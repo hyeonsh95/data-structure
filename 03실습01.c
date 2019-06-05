@@ -29,5 +29,5 @@ int main()
 	max = getMax(score,10);
 	min = getMin(score,10);
 	length = getLeng(score,10);
-	printf("ÃÖ´ë : %d\n  ÃÖ¼Ò: %d\n  ±æÀÌ: %d\n", max, min, length);
+	printf("ÃƒÃ–Â´Ã« : %d\n  ÃƒÃ–Â¼Ã’: %d\n  Â±Ã¦Ã€ÃŒ: %d\n", max, min, length);
 }
