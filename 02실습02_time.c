@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 #define  MAX_SIZE	20000
-#define  ITERATIONS 30	// irerations : ¹İº¹
+#define  ITERATIONS 30	// irerations : ë°˜ë³µ
 #define	 SWAP(x,y,t)	((t)=(x), (x)=(y), (y)=(t))
 void sort(int ar[], int n);
 int main()
@@ -11,7 +11,7 @@ int main()
 					100,200,300,400,500,600,700,800,900,
 					1000,2000,3000,4000,5000,6000,7000,8000,9000,
 					10000,20000 };
-	clock_t start, stop;		// ÀÌ°Å ¹¹Áö clock_t
+	clock_t start, stop;		// ì´ê±° ë­ì§€ clock_t
 	double duration;
 		
 	printf("     n		 time\n");
@@ -22,7 +22,7 @@ int main()
 		sort(list, timelist[i]);
 		stop = clock();
 				
-		duration = ((double)(stop - start)) / CLK_TCK;		// ÃÊ´ç Æ½Åå¼ö : CLK_TCK
+		duration = ((double)(stop - start)) / CLK_TCK;		// ì´ˆë‹¹ í‹±í†¡ìˆ˜ : CLK_TCK
 		printf("%6d		%10.7lf\n", timelist[i], duration);
 	}
 	getchar();
