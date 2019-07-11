@@ -1,0 +1,165 @@
+#include<iostream>
+using namespace std;
+
+class Stack
+{
+	int m_size;
+	int m_top_index;
+	int m_total;
+	int *p;
+public:
+	Stack();
+	Stack(int size);
+	Stack(const Stack &s);
+	~Stack();
+	void Push(int data);
+	int Pop();
+	int Peek();
+	void Init_Stack();
+	int Compute_Total();
+	int Get_Top_Index();
+	int* Get_Stack_Pointer();
+};
+Stack::Stack()
+{
+
+	m_size = 4;
+	p = new int[m_size];
+	cout << "인수 없는 생성자 함수 호출" << endl;
+	m_top_index = 0;
+	m_total = 0;
+	if (!p)
+	{
+		cout << "Memory Allocation Error" << endl;
+	}
+
+}
+Stack::Stack(int size)
+{
+
+	m_size = size;
+	p = new int[m_size];
+	cout << "인수 있는 생성자 함수 호출" << endl;
+	m_top_index = 0;
+	m_total = 0;
+	if (!p)
+	{
+		cout << "Memory Allocation Error" << endl;
+	}
+}
+Stack::Stack(const Stack &s)
+{
+	m_size = s.m_size;
+	m_top_index = s.m_top_index;
+	m_total = s.m_total;
+	p = new int[m_size];
+	for (int i = 0; i < m_size; i++)
+		p[i] = s.p[i];
+	cout << "복사 생성자 함수 호출" << endl;
+}
+Stack::~Stack()
+{
+	cout << "소멸자 함수 호출" << endl << endl;
+	delete[] p;
+}
+void Stack::Push(int data)
+{
+	if (m_top_index < m_size)
+	{
+		p[m_top_index++] = data;
+	}
+	else
+		cout << "Stack is full" << endl;
+}
+int Stack::Pop()
+{
+	if (m_top_index <= 0)
+	{
+		cout << "Stack is empty" << endl;
+		return 0;
+	}
+	m_top_index--;
+	return p[m_top_index];
+}
+int Stack::Peek()
+{
+	if (m_top_index <= 0)
+	{
+		cout << "Stack is empty" << endl;
+		return 0;
+	}
+	else
+		return p[m_top_index - 1];
+}
+void Stack::Init_Stack()
+{
+	m_top_index = 0;
+}
+int Stack::Get_Top_Index()
+{
+	return m_top_index;
+}
+int* Stack::Get_Stack_Pointer()
+{
+	return p;
+}
+int Stack::Compute_Total()
+{
+	for (int i = 0; i < m_top_index; i++)
+	{
+		m_total = m_total + p[i];
+	}
+	return  m_total;
+}
+void Print_Stack(Stack s)
+{
+	int *p = s.Get_Stack_Pointer();
+	for (int i = 0; i < s.Get_Top_Index(); i++)
+		cout << p[i] << " ";
+	cout << endl;
+}
+int main()
+{
+	Stack s1;
+	Stack *s2 = new Stack(6);
+
+	s1.Init_Stack();
+	s2->Init_Stack();
+
+	s1.Pop();
+	s1.Push(80);
+	s1.Push(70);
+	s1.Push(60);
+	s1.Push(50);
+
+	cout << "s1 스택 맨위의 데이터는" << s1.Peek() << endl;
+
+	s2->Push(95);
+	s2->Push(85);
+	s2->Push(75);
+	s2->Push(65);
+	s2->Push(55);
+
+	Stack s3(*s2);
+	s3.Push(70);
+	s3.Push(80);
+
+	cout << " --- s1 --- " << endl;
+	Print_Stack(s1);
+
+	cout << " --- s2 --- " << endl;
+	Print_Stack(*s2);
+
+	cout << " --- s3 --- " << endl;
+	Print_Stack(s3);
+
+	cout << "s3 스택 맨 위의 데이터는 " << s3.Pop() << endl;
+	cout << "s3의 합계는 " << s3.Compute_Total() << endl;
+
+
+
+	system("PAUSE");
+	delete s2;
+	return 0;
+}
+
