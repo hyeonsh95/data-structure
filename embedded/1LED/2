@@ -1,0 +1,37 @@
+int pin_LED0 = 5;
+int pin_LED1 = 6;
+int pin_LED2 = 8;
+int pin_LED3 = 9;
+int pin_LED4 = 10;
+int pin_LED5 = 11;
+int pin_LED6 = 12;
+int pin_LED7 = 13;
+
+void setup() {
+  // put your setup code here, to run once:
+  int count;
+  for(count = 5; count<= 13; count++)
+  {
+    if(count == 7) 
+      count+=1;  
+    pinMode(count, OUTPUT);
+  }
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  int count;
+  int countt;
+  for(count = 5; count <= 13; count+=2)
+  { 
+    if(count == 7) 
+          count += 1;
+    countt = count + 1;      
+    digitalWrite(count,1);
+    digitalWrite(countt,1);
+    delay(700);
+    digitalWrite(count,0);
+    digitalWrite(countt,0);
+    delay(700);
+  }
+}
