@@ -1,0 +1,49 @@
+int pin_SW1 = 3;
+int pin_SW2 = 4;
+
+int pin_LED[] = {5,6,8,9,10,11,12,13};
+
+/*int pin_LED0 = 5;
+int pin_LED1 = 6;
+int pin_LED2 = 8;
+int pin_LED3 = 9;
+int pin_LED4 = 10;
+int pin_LED5 = 11;
+int pin_LED6 = 12;
+int pin_LED7 = 13;
+*/
+
+void setup() {
+  pinMode(pin_SW1, INPUT);
+  pinMode(pin_SW2, INPUT);
+  
+  for(int i = 0; i <= 7; i++) {
+  pinMode(pin_LED[i], OUTPUT); 
+  }
+}
+
+void loop() {
+  uint8_t SW1_data, SW2_data; 
+  SW1_data = digitalRead(pin_SW1); 
+  SW2_data = digitalRead(pin_SW2);
+   
+  if(SW1_data == HIGH)  {
+  for(int i = 0; i <= 3; i++)
+     digitalWrite(pin_LED[i], SW1_data); 
+  }
+  
+  else if(SW1_data == LOW)  {
+  for(int i = 0; i <= 3; i++)
+     digitalWrite(pin_LED[i], SW1_data); 
+  }
+  
+  if(SW2_data == HIGH)  {
+  for(int j = 4; j <= 7; j++)
+     digitalWrite(pin_LED[j], SW2_data); 
+  }
+  
+  else if(SW2_data == LOW)  {
+  for(int j = 4; j <= 7; j++)
+     digitalWrite(pin_LED[j], SW2_data); 
+  } 
+}
