@@ -1,0 +1,139 @@
+#include<iostream>
+using namespace std;
+void Input_Data(int *total, int *money, int *type, int *num);
+char Check_Money(int *total, int *money, char *selection);
+void Print_Result(char selection, int total, int money, int type, int num);
+
+int main()
+{
+	int total, money, type, num;
+	char selection = 'y';
+
+	while (selection == 'y' || selection == 'Y')
+	{
+		cout << "===========================음료자판기========================\n";
+		cout << "1.사이다 : 700원" << "    " << "2.콜라 : 900원" << "    " << "3.쥬스 : 1300원\n";
+		cout << "=============================================================\n";
+		cout << "돈을 넣어주세요:";
+		cin >> money;
+		cout << "음료 선택 및 수량 >>";
+		cin >> type >> num;
+
+		Input_Data(&total, &money, &type, &num);
+		selection = Check_Money(&total, &money, &selection);
+		Print_Result(selection, total, money, type, num);
+
+		cout << endl;
+		cout << "음료수를 더 뽑겠습니까? (Y/N)";
+		cin >> selection;
+
+		if (selection == 'n' || selection == 'N')
+		{
+
+			cout << "이용해 주셔서 감사합니다." << endl;
+			break;
+		}
+		while (selection != 'Y' && selection != 'y' && selection != 'N' && selection != 'n')
+		{
+			cout << "오직 Y, y, N, n만 입력하시오. : ";
+			cin >> selection;
+		}
+
+	}
+}
+
+
+void Input_Data(int *total, int *money, int *type, int *num)
+{
+
+	
+
+	if (*type == 1)
+	{
+		*total = *num * 700;
+	}
+	if (*type == 2)
+	{
+		*total = *num * 900;
+	}
+	if (*type == 3)
+	{
+		*total = *num * 1300;
+	}
+
+
+}
+
+char Check_Money(int *total, int *money, char *selection)
+{
+	int cash = 0;
+	while (*total > *money)
+	{
+		cout << "금액이 " << *total - *money << "원 부족합니다. 돈을 더 투입하시겠습니까? (Y/N)";
+		cin >> *selection;
+		if (*selection == 'y' || *selection == 'Y')
+		{
+			cout << "추가 투입금 :";
+			cin >> cash;
+			*money = cash + *money;
+		}
+
+		if (*selection == 'n' || *selection == 'N')
+		{
+			cout << "투입하신 금액이 부족하여 판매가 취소되었습니다." << endl;
+			cout << "투입하신 돈" << *money << "원을 받으십시요" << endl;
+
+			break;
+
+		}
+
+		while (*selection != 'Y' && *selection != 'y' && *selection != 'N' && *selection != 'n')
+		{
+			cout << "오직 Y, y, N, n만 입력하시오. : ";
+			cin >> *selection;
+			if (*selection == 'y' || *selection == 'Y')
+			{
+				cout << "추가 투입금 :";
+				cin >> cash;
+				*money = cash + *money;
+				break;
+			}
+		}
+
+
+	}
+	return *selection;
+}
+
+
+
+
+
+void Print_Result(char selection, int total, int money, int type, int num)
+{
+	char arr[][7] = { "사이다", "콜라", "쥬스" };
+
+
+
+	if (selection == 'y' || selection == 'Y')
+	{
+		cout << "현재 금액: " << money << "입니다" << endl;
+
+
+		if (type == 1)
+		{
+			cout << arr[0] << num << "개와 잔돈" << money - total << "원을 받으십시요" << endl;
+		}
+		if (type == 2)
+		{
+			cout << arr[1] << num << "개와 잔돈" << money - total << "원을 받으십시요" << endl;
+		}
+		if (type == 3)
+		{
+			cout << arr[2] << num << "개와 잔돈" << money - total << "원을 받으십시요" << endl;
+		}
+	}
+
+
+
+}
