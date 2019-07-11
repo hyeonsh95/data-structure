@@ -1,0 +1,15 @@
+#include <Servo.h>
+Servo SERVO;
+int pin_SLIDE = A5;
+int pin_SERVO = 13;
+
+void setup() {
+  pinMode(pin_SLIDE, INPUT);
+  SERVO.attach(pin_SERVO);
+}
+
+void loop() {
+  uint16_t ADC_data = 0;
+  ADC_data = analogRead(pin_SLIDE);
+  SERVO.write(ADC_data / 5.688);
+}
