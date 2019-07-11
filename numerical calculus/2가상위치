@@ -1,0 +1,72 @@
+#include<stdio.h>
+#include <math.h>
+
+#define funct(x) (x*x*x - x -1.344)
+
+void main()
+{
+	double a, b, xc, fa, fb, fc, epsilon;
+	int imax, iter;
+
+	epsilon = 0.0001;
+	imax = 10000;
+	printf("\n 좌측 경계값 : a = ");
+	scanf_s("%lf", &a);
+
+	printf("\n 우측 경계값 : b = ");
+	scanf_s("%lf", &b);
+
+	printf("\n a, b ,epsilon, imax : %f %f %f %d \n", a, b, epsilon, imax);
+
+	printf("\n");
+
+	fa = funct(a);
+	fb = funct(b);
+
+
+
+	if (fabs(fa) <= epsilon)
+	{
+		printf("\n a가 근입니다 ");
+		goto END;
+	}
+	if (fabs(fb) <= epsilon)
+	{
+		printf("\n b가 근입니다");
+		goto END;
+	}
+	if (fa*fb > 00) {
+		printf("\n 이 범위에서 근이 없음 \n");
+		goto END;
+	}
+	if (fa*fb <= 00) {
+		printf("a%*s |  b%*s | xc%*s |  fa%*s |  fb%*s| fc\n", 7, "", 7, "", 6, "", 7, "", 7, "");
+	}
+	for (iter = 1; iter < imax; ++iter)
+	{
+
+		xc = b - (fb * (a - b)) / (fa - fb);
+		fc = funct(xc);
+		printf("%f |  %f | %f |  %f |  %f |  %f \n", a, b, xc, fa, fb, fc);
+		if (fabs(fc) <= epsilon)
+		{
+			printf("\n 근 xc = %f \n", xc);
+			goto END;
+		}
+		if (fa * fc < 0.0)
+		{
+			b = xc;
+			fb = fc;
+		}
+		else
+		{
+			a = xc;
+			fa = fc;
+		}
+	}
+	printf("수렴하지 않음");
+END:;
+}
+
+
+
