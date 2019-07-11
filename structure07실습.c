@@ -14,46 +14,46 @@ int main()
 {
 	listNode *curr;
 
-	//¿¬°á¸®½ºÆ® ÀÎ½ºÅÏ½º(l1) »ı¼ºÇÏ±â
+	//ì—°ê²°ë¦¬ìŠ¤íŠ¸ ì¸ìŠ¤í„´ìŠ¤(l1) ìƒì„±í•˜ê¸°
 	linkedList *l1 = (linkedList*)malloc(sizeof(linkedList));
 	l1->head = NULL;
 
-	//³ëµå ÀÎ½ºÅÏ½º(n1) »ı¼ºÇÏ±â
+	//ë…¸ë“œ ì¸ìŠ¤í„´ìŠ¤(n1) ìƒì„±í•˜ê¸°
 	listNode *n7 = (listNode *)malloc(sizeof(listNode));
-	strcpy(n7->data, "ÀÏ");
+	strcpy(n7->data, "ì¼");
 	n7->link = NULL;
 	
 	listNode *n6 = (listNode *)malloc(sizeof(listNode));
-	strcpy(n6->data, "Åä");
+	strcpy(n6->data, "í† ");
 	n6->link = n7;
 
 	listNode *n5 = (listNode *)malloc(sizeof(listNode));
-	strcpy(n5->data, "±İ");
+	strcpy(n5->data, "ê¸ˆ");
 	n5->link = n6;
 	
 	listNode *n4 = (listNode *)malloc(sizeof(listNode));
-	strcpy(n4->data, "¸ñ");
+	strcpy(n4->data, "ëª©");
 	n4->link = n5;
 	
 	listNode *n3 = (listNode *)malloc(sizeof(listNode));
-	strcpy(n3->data, "¼ö");
+	strcpy(n3->data, "ìˆ˜");
 	n3->link = n4;
 	
 	listNode *n2 = (listNode *)malloc(sizeof(listNode));
-	strcpy(n2->data, "È­");
+	strcpy(n2->data, "í™”");
 	n2->link = n3;
 	
 	listNode *n1 = (listNode *)malloc(sizeof(listNode));
-	strcpy(n1->data, "¿ù");
+	strcpy(n1->data, "ì›”");
 	n1->link = n2;
 
-	// ºó¸®½ºÆ®(l1)¿¡ ³ëµå(n1) »ğÀÔ(insert)ÇÏ±â
+	// ë¹ˆë¦¬ìŠ¤íŠ¸(l1)ì— ë…¸ë“œ(n1) ì‚½ì…(insert)í•˜ê¸°
 	l1->head = n1;
 
-	//¿¬°á¸®½ºÆ® Ãâ·Â
+	//ì—°ê²°ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
 	curr = l1->head;
 	while (curr != NULL) {
-		printf("¿¬°á¸®½ºÆ® : %p[%s, %p]\n", curr, curr->data, curr->link);
+		printf("ì—°ê²°ë¦¬ìŠ¤íŠ¸ : %p[%s, %p]\n", curr, curr->data, curr->link);
 		curr = curr->link;
 	}
 	printf("\n");
