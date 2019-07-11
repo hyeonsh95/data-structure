@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <math.h>
 struct polynomial {
-	int Max_expo;    // expo : Áö¼ö
-	int coef[];	// coef : °è¼ö
+	int Max_expo;    // expo : ì§€ìˆ˜
+	int coef[];	// coef : ê³„ìˆ˜
 };
 int main()
 {
-	printf("ÀÔ·Â ÇÏ½Ç ´ÙÇ×½ÄÀº aX^n + bX^n-1 + ..... yX^1 + zX^0 ÀÔ´Ï´Ù.\n");
+	printf("ì…ë ¥ í•˜ì‹¤ ë‹¤í•­ì‹ì€ aX^n + bX^n-1 + ..... yX^1 + zX^0 ì…ë‹ˆë‹¤.\n");
 	printf("***********************************************************\n");
 
 	struct polynomial poly = { (3.3),(1,1) };
