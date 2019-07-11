@@ -14,7 +14,7 @@ polynomial addPolynomial(polynomial A, polynomial B) {
 	int A_index = 0, B_index = 0, C_index = 0;
 	int A_degree = A.degree, B_degree = B.degree, C_degree = MAX(A.degree, B.degree);
 	while (A_index <= A.degree && B_index <= B.degree) {
-		// case 1: ´ÙÇ×½Ä AÀÇ Áö¼ö >  ´ÙÇ×½Ä BÀÇ Áö¼ö
+		// case 1: ë‹¤í•­ì‹ Aì˜ ì§€ìˆ˜ >  ë‹¤í•­ì‹ Bì˜ ì§€ìˆ˜
 		if (COMPARE(A_degree, B_degree)>0)
 		{	
 			C.coef[C_index++] = A.coef[A_index++];
