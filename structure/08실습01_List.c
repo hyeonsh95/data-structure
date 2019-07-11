@@ -64,28 +64,28 @@ void printLinkedList(linkedList *L) {
 	linkedNode *curr;
 	curr = L->head;
 	while (curr != NULL) {
-		printf("¿¬°á¸®½ºÆ® : %p[%s, %p]\n", curr, curr->data, curr->link);
+		printf("ì—°ê²°ë¦¬ìŠ¤íŠ¸ : %p[%s, %p]\n", curr, curr->data, curr->link);
 		curr = curr->link;
 	}
 	printf("\n");
 }
 
 int main() {
-	//¿¬°á¸®½ºÆ® ÀÎ½ºÅÏ½º(list1) »ý¼ºÇÏ±â
+	//ì—°ê²°ë¦¬ìŠ¤íŠ¸ ì¸ìŠ¤í„´ìŠ¤(list1) ìƒì„±í•˜ê¸°
 	linkedList *list1 = createLinkedList();
 
-	//¸®½ºÆ®(list1)¿¡ ³ëµå (n1,n2,n3)»ðÀÔÇÏ±â
-	insertLastNode(list1, "¿ù");
-	insertLastNode(list1, "È­");
-	insertLastNode(list1, "¼ö");
-	insertLastNode(list1, "¸ñ");
-	insertLastNode(list1, "±Ý");
-	insertLastNode(list1, "Åä");
-	insertLastNode(list1, "ÀÏ");
+	//ë¦¬ìŠ¤íŠ¸(list1)ì— ë…¸ë“œ (n1,n2,n3)ì‚½ìž…í•˜ê¸°
+	insertLastNode(list1, "ì›”");
+	insertLastNode(list1, "í™”");
+	insertLastNode(list1, "ìˆ˜");
+	insertLastNode(list1, "ëª©");
+	insertLastNode(list1, "ê¸ˆ");
+	insertLastNode(list1, "í† ");
+	insertLastNode(list1, "ì¼");
 
 	printLinkedList(list1);
 
-	//¿¬°á¸®½ºÆ® »èÁ¦ÇÏ±â->Ãâ·ÂÇÏ±â
+	//ì—°ê²°ë¦¬ìŠ¤íŠ¸ ì‚­ì œí•˜ê¸°->ì¶œë ¥í•˜ê¸°
 	for (; list1->head;) {
 		deleteLastNode(list1);
 		printLinkedList(list1);
