@@ -1,0 +1,64 @@
+int pin_DC_A = 5;
+int pin_DC_B = 6;
+int pin_R = 9;
+int pin_G = 10;
+int pin_B = 11;
+
+void setup() {
+  Serial1.begin(9600);
+  pinMode(pin_R,OUTPUT);
+  pinMode(pin_G,OUTPUT);
+  pinMode(pin_B,OUTPUT);
+  Serial1.println("RGB출력양식ex)1 100 0 0");
+  Serial1.println("DC모터출력양식ex)2 100");
+}
+
+void loop() {
+  if(Serial1.available()>0)
+  {
+    int num = Serial1.parseInt();
+    int R = Serial1.parseInt();
+    int G = Serial1.parseInt();
+    int B = Serial1.parseInt();
+    
+    switch(num)
+    {      
+      case 1:
+      analogWrite(pin_R, R);
+      analogWrite(pin_G, G);
+      analogWrite(pin_B, B);
+      Stop();
+      Serial1.println("RGB출력양식ex)1 100 0 0");
+      Serial1.println("DC모터출력양식ex)2 100");
+      break;
+      
+      case 2:
+      analogWrite(pin_R, 0);
+      analogWrite(pin_G, 0);
+      analogWrite(pin_B, 0);
+      
+     if(R==0){
+        Stop();
+      }
+      
+      else{
+        forwardRotation(R);
+      }
+      Serial1.println("RGB출력양식ex)1 100 0 0");
+      Serial1.println("DC모터출력양식ex)2 100");
+      break;     
+    }   
+  }   
+}
+
+void forwardRotation(uint8_t Speed) 
+{ 
+  digitalWrite(pin_DC_A, LOW);
+  analogWrite(pin_DC_B, Speed); 
+}
+
+void Stop(void) 
+{ 
+  digitalWrite(pin_DC_A, LOW); 
+  digitalWrite(pin_DC_B, LOW); 
+}
