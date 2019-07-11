@@ -8,7 +8,7 @@ typedef struct BtreeNode
 	element data;
 	struct BtreeNode *left;				
 	struct BtreeNode *right;
-	int treeRight;			// thread¿¡ Ãß°¡µÊ
+	int treeRight;			// threadì— ì¶”ê°€ë¨
 }bnode;
 
 typedef struct Btree
@@ -54,7 +54,7 @@ void TreadInorder(btree *root)
 
 int main()
 {
-	//(A*B-C/D) ¼ö½Ä ÀÌÁøÆ®¸® ¸¸µé±â
+	//(A*B-C/D) ìˆ˜ì‹ ì´ì§„íŠ¸ë¦¬ ë§Œë“¤ê¸°
 	bnode *N07 = createBnodeInstance('D', NULL, NULL, 0);
 	bnode *N06 = createBnodeInstance('C', NULL, NULL, 1);
 	bnode *N05 = createBnodeInstance('B', NULL, NULL, 1);
@@ -67,7 +67,7 @@ int main()
 	N05->right = N01;
 	N06->right = N03;
 
-	printf("\n½º·¹µå ÀÌÁøÆ®¸®ÀÇ ÁßÀ§¼øÈ¸ : ");
+	printf("\nìŠ¤ë ˆë“œ ì´ì§„íŠ¸ë¦¬ì˜ ì¤‘ìœ„ìˆœíšŒ : ");
 	TreadInorder(N01);
 	printf("\n");
 	return 0;
