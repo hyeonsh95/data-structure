@@ -1,4 +1,4 @@
-// ÀÌÁø Å½»ö Æ®¸®ÀÇ ¿¬»ê ÇÁ·Î±×·¥ ¿¹Á¦7-4
+// ì´ì§„ íƒìƒ‰ íŠ¸ë¦¬ì˜ ì—°ì‚° í”„ë¡œê·¸ë¨ ì˜ˆì œ7-4
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -30,7 +30,7 @@ Node* createBnodeInstance(element datasize, Node *leftNode, Node *rightNode, int
 	node->right = rightNode;
 	return node;
 }
-// searchBST : ÀÌÁø Å½»öÆ®¸®¿¡¼­ Å°°ªÀÌ findWÀÎ ³ëµåÀÇ À§Ä¡¸¦ Å½»ö.
+// searchBST : ì´ì§„ íƒìƒ‰íŠ¸ë¦¬ì—ì„œ í‚¤ê°’ì´ findWì¸ ë…¸ë“œì˜ ìœ„ì¹˜ë¥¼ íƒìƒ‰.
 Node* searchBST(Node* root, element findW)
 {
 	Node *node;
@@ -41,10 +41,10 @@ Node* searchBST(Node* root, element findW)
 		else if (findW == node->data) return node;
 		else node = node->right;
 	}
-	printf("\n Ã£À¸½Ã´Â data°¡ ¾ø½À´Ï´Ù!");
+	printf("\n ì°¾ìœ¼ì‹œëŠ” dataê°€ ì—†ìŠµë‹ˆë‹¤!");
 	return node;
 }
-// insertNode : Æ÷ÀÎÅÍ node°¡ °¡¸®Å°´Â ³ëµå¿Í ºñ±³ÇÏ¿© ³ëµå ¸¦ »ğÀÔÇÏ´Â ¿¬»ê
+// insertNode : í¬ì¸í„° nodeê°€ ê°€ë¦¬í‚¤ëŠ” ë…¸ë“œì™€ ë¹„êµí•˜ì—¬ ë…¸ë“œ ë¥¼ ì‚½ì…í•˜ëŠ” ì—°ì‚°
 Node* insertNode(Node* locateND, element x)
 {
 	Node* newnode;
@@ -58,11 +58,11 @@ Node* insertNode(Node* locateND, element x)
 	}
 	else if (x < locateND->data) locateND->left = insertNode(locateND->left, x);
 	else if (x > locateND->data) locateND->right = insertNode(locateND->right, x);
-	else if (x == locateND->data) printf("\nÀÌ¹Ì °°ÀºÅ°°¡ Á¸ÀçÇÕ´Ï´Ù\n");
+	else if (x == locateND->data) printf("\nì´ë¯¸ ê°™ì€í‚¤ê°€ ì¡´ì¬í•©ë‹ˆë‹¤\n");
 
 	return locateND;
 }
-// ·çÆ® ³ëµåºÎÅÍ Å½»öÇÏ¿© Å°°ª°ú °°Àº ³ëµå¸¦ Ã£¾Æ »èÁ¦ÇÏ´Â ¿¬»ê
+// ë£¨íŠ¸ ë…¸ë“œë¶€í„° íƒìƒ‰í•˜ì—¬ í‚¤ê°’ê³¼ ê°™ì€ ë…¸ë“œë¥¼ ì°¾ì•„ ì‚­ì œí•˜ëŠ” ì—°ì‚°
 void deleteNode(Node*root, element key)
 {
 	Node* parent, *locate, *succ, *succ_parent, *child;
@@ -70,17 +70,17 @@ void deleteNode(Node*root, element key)
 	locate = root;
 	while ((locate != NULL) && (locate->data != key))
 	{
-		//»èÁ¦ÇÒ ³ëµåÀÇ À§Ä¡ Å½»ö
+		//ì‚­ì œí•  ë…¸ë“œì˜ ìœ„ì¹˜ íƒìƒ‰
 		parent = locate;
 		if (key < locate->data) locate = locate->left;
 		else  locate = locate->right;
 	}
-	// »èÁ¦ÇÒ ³ëµå°¡ ¾ø´Â°æ¿ì
+	// ì‚­ì œí•  ë…¸ë“œê°€ ì—†ëŠ”ê²½ìš°
 	if (locate == NULL) {
-		printf("\n Ã£´Â Å°°¡ ÀÌÁøÆ®¸®¿¡ ¾ø½À´Ï´Ù!");
+		printf("\n ì°¾ëŠ” í‚¤ê°€ ì´ì§„íŠ¸ë¦¬ì— ì—†ìŠµë‹ˆë‹¤!");
 		return;
 	}
-	//»èÁ¦ÇÒ ³ëµå°¡ ´Ü¸» ³ëµåÀÎ°æ¿ì
+	//ì‚­ì œí•  ë…¸ë“œê°€ ë‹¨ë§ ë…¸ë“œì¸ê²½ìš°
 	if ((locate->left == NULL) && (locate->right == NULL) {
 		if (parent != NULL) {
 			if (parent->left == parent) parent->left = NULL;
