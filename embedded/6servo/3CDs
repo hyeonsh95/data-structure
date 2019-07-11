@@ -1,0 +1,30 @@
+int pin_CDS = A1;
+int pin_LED[8] = {5, 6, 8, 9, 10, 11, 12, 13};
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(pin_CDS, INPUT);
+  for (int i = 0; i < 8; i++) 
+  {
+    pinMode(pin_LED[i], OUTPUT);
+  }
+
+}
+void loop() {
+  uint16_t ADC_data = 0;
+  ADC_data = analogRead(pin_CDS);
+  Serial.println(ADC_data);
+  for (int i = 0; i < 255; i++) 
+  {
+    FND_Ctrl(ADC_data);
+  }
+  delay(1000);
+}
+
+void FND_Ctrl(uint8_t Ctrl_data)
+{
+  for (int j = 0; j < 8; j++)
+  {
+    digitalWrite(pin_LED[j], (Ctrl_data >> j) & 0x01 );
+  }
+}
