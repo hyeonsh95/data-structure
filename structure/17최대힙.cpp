@@ -2,20 +2,20 @@
 #include <stdlib.h>
 #define MAX_ELEMENT 100
 
-// È÷ÇÁ¿¡ ´ëÇÑ 1Â÷¿ø ¹è¿­°ú È÷ÇÁ ¿ø¼ÒÀÇ °³¼ö¸¦ ±¸Á¶Ã¼·Î ¹­¾î¼­ ¼±¾ğ
+// íˆí”„ì— ëŒ€í•œ 1ì°¨ì› ë°°ì—´ê³¼ íˆí”„ ì›ì†Œì˜ ê°œìˆ˜ë¥¼ êµ¬ì¡°ì²´ë¡œ ë¬¶ì–´ì„œ ì„ ì–¸
 typedef struct {
 	int heap[MAX_ELEMENT];
 	int heap_size;
 } heapType;
 
-// °ø¹é È÷ÇÁ¸¦ »ı¼ºÇÏ´Â ¿¬»ê
+// ê³µë°± íˆí”„ë¥¼ ìƒì„±í•˜ëŠ” ì—°ì‚°
 heapType* createHeap() {
 	heapType *h = (heapType*)malloc(sizeof(heapType));
 	h->heap_size = 0;
 	return h;
 }
 
-// È÷ÇÁ¿¡ itemÀ» »ğÀÔÇÏ´Â ¿¬»ê
+// íˆí”„ì— itemì„ ì‚½ì…í•˜ëŠ” ì—°ì‚°
 void insertHeap(heapType *h, int item) {
 	int i;
 	h->heap_size = h->heap_size + 1;
@@ -27,7 +27,7 @@ void insertHeap(heapType *h, int item) {
 	h->heap[i] = item;
 }
 
-// È÷ÇÁÀÇ ·çÆ®¸¦ »èÁ¦ÇÏ¿© ¹İÈ¯ÇÏ´Â ¿¬»ê
+// íˆí”„ì˜ ë£¨íŠ¸ë¥¼ ì‚­ì œí•˜ì—¬ ë°˜í™˜í•˜ëŠ” ì—°ì‚°
 int deleteHeap(heapType *h) {
 	int parent, child;
 	int item, temp;
@@ -50,7 +50,7 @@ int deleteHeap(heapType *h) {
 	return item;
 }
 
-// 1Â÷¿ø ¹è¿­ È÷ÇÁÀÇ ³»¿ëÀ» Ãâ·ÂÇÏ´Â ¿¬»ê
+// 1ì°¨ì› ë°°ì—´ íˆí”„ì˜ ë‚´ìš©ì„ ì¶œë ¥í•˜ëŠ” ì—°ì‚°
 void printHeap(heapType *h) {
 	int i;
 	printf("Heap : ");
