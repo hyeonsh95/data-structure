@@ -1,0 +1,46 @@
+#include<Servo.h>
+int pin_SW1 = 3;
+int pin_SW2 = 4;
+int pin_SERVO = 13;
+Servo SERVO;
+int pos = 0;
+int lastdata1 = 0;
+int lastdata2 =0;
+
+void setup() {
+  pinMode(pin_SW1,INPUT); 
+  pinMode(pin_SW2,INPUT);
+  SERVO.attach(pin_SERVO);
+  Serial.begin(9600);
+}
+
+void loop() {
+  uint8_t SW1_data, SW2_data;
+
+  SW1_data = digitalRead(pin_SW1);
+  SW2_data = digitalRead(pin_SW2);
+  
+  if(lastdata1 != SW1_data)
+  {
+    if(SW1_data == 1)
+    {
+    pos++;    
+    if(pos>180)
+    {
+      pos=0;
+    }
+    Serial.println(pos);
+  }
+  }
+  
+  if(lastdata2 != SW2_data)
+  {
+    if(SW2_data == 1)
+    {
+      SERVO.write(pos);
+    }
+  }
+  
+  lastdata1 = SW1_data;
+  lastdata2 = SW2_data; 
+}
