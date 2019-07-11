@@ -1,0 +1,18 @@
+int pin_TEMP = A4;
+double Temp = 0;
+
+void setup() { 
+  Serial.begin(115200);
+  pinMode(pin_TEMP, INPUT);
+}
+
+void loop() {
+  uint16_t ADC_data = 0;
+  
+  ADC_data = analogRead(pin_TEMP);
+  Temp = ADC_data * 5 * 100 / 1023;
+  
+  Serial.println(String(Temp, 1) + "[C]");
+  
+  delay(500);
+}
