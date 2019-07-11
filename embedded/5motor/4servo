@@ -1,0 +1,21 @@
+#include <Servo.h>
+int pin_SERVO = 13;
+int pos = 0;
+Servo SERVO;
+
+void setup() {
+  Serial.begin(9600);
+  SERVO.attach(pin_SERVO);
+}
+
+void loop() {
+  if(Serial.available())
+  {
+    pos = Serial.parseInt();
+    if(Serial.read()=='\n')
+    {
+      Serial.print('\r');
+    }
+  }
+  SERVO.write(pos);   
+}
