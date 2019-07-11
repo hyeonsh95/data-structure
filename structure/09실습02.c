@@ -45,10 +45,10 @@ void printMatrix(linkedMatrix *M) {
 	linkedEntry *temp;
 	int i = 0;
 
-	printf("¸ÅÆ®¸¯½º : %d %d %d\n", M->n_Row, M->n_Col, M->n_NZero);
+	printf("Â¸Ä¹Ä†Å½Â¸Å»ËÅŸ : %d %d %d\n", M->n_Row, M->n_Col, M->n_NZero);
 	temp = M->head;
 	for (; temp;) {
-		printf("¿£Æ®¸® %d %d %d %d\n", ++i, temp->i_Row, temp->j_Col, temp->entryValue);
+		printf("Å¼ÅÄ†Å½Â¸Å½ %d %d %d %d\n", ++i, temp->i_Row, temp->j_Col, temp->entryValue);
 		temp = temp->nextEntry;
 	}
 	printf("\n");
