@@ -1,0 +1,147 @@
+#include<iostream>
+using namespace std;
+
+class Student
+{
+	int m_english, m_math;
+	int m_total;
+	double m_average;
+	char m_top_rank;
+public:
+	void SetData(int english, int math);
+	int GetEnglish();
+	int GetMath();
+	int GetTotal();
+	double GetAverage();
+	char GetTopRank();
+	void ComputeAverage();
+	void InitTopRank();
+	void GetTopAverage(Student *ob1, Student *ob2, Student *ob3);
+};
+
+void Student::SetData(int english, int math)
+{
+	m_english = english;
+	m_math = math;
+}
+int Student::GetEnglish()
+{
+	return m_english;
+}
+int Student::GetMath()
+{
+	return m_math;
+}
+int Student::GetTotal()
+{
+	return m_total;
+}
+double Student::GetAverage()
+{
+	return m_average;
+}
+
+char Student::GetTopRank()
+{
+	return m_top_rank;
+}
+void Student::ComputeAverage()
+{
+
+	m_total = m_english + m_math;
+	m_average = m_total / 2.0;
+}
+void Student::InitTopRank()
+{
+	m_top_rank = ' ';
+}
+
+void Student::GetTopAverage(Student *ob1, Student *ob2, Student *ob3)
+{
+	if ((m_average >= ob1->m_average) && (m_average >= ob2->m_average) && (m_average >= ob3->m_average))
+	{
+		m_top_rank = '*';
+	}
+	if (ob1->m_average >= ob2->m_average && ob1->m_average >= ob3->m_average)
+	{
+		ob1->m_top_rank = '*';
+	}
+	if (ob2->m_average >= ob1->m_average && ob2->m_average >= ob3->m_average)
+	{
+		ob2->m_top_rank = '*';
+	}
+	if (ob3->m_average >= ob1->m_average && ob3->m_average >= ob2->m_average)
+	{
+		ob3->m_top_rank = '*';
+	}
+
+}
+
+void Input_Data(int *english, int *math)
+{
+	cin >> *english >> *math;
+	while (*english > 100 || *english < 0 || *math > 100 || *math < 0)
+	{
+		cout << "시험 성적은 0보다 크고 100보다 작아야 한다. 다시 입력하시요. : ";
+		cin >> *english >> *math;
+	}
+}
+
+void main()
+{
+	int english, math, p;
+	char selection;
+	Student *ob = new Student[4];
+
+	do {
+
+
+		cout << "첫 번째 학생의 영어, 수학 성적을 입력하세요: ";
+		Input_Data(&english, &math);
+		ob[0].SetData(english, math);
+
+		cout << "두 번째 학생의 영어, 수학 성적을 입력하세요: ";
+		Input_Data(&english, &math);
+		ob[1].SetData(english, math);
+
+		cout << "세 번째 학생의 영어, 수학 성적을 입력하세요: ";
+		Input_Data(&english, &math);
+		ob[2].SetData(english, math);
+
+		cout << "네 번째 학생의 영어, 수학 성적을 입력하세요: ";
+		Input_Data(&english, &math);
+		ob[3].SetData(english, math);
+
+
+		for (p = 0; p < 4; p++) {
+			ob[p].InitTopRank();
+			ob[p].ComputeAverage();
+		}
+
+		ob[0].GetTopAverage(&ob[1], &ob[2], &ob[3]);
+
+		cout << "rank\t" << "영어\t" << "수학\t" << "총점\t" << "평균\t" << endl;
+
+		for (int p = 0; p < 4; p++)
+		{
+			cout.setf(ios::fixed);
+			cout.precision(2);
+			cout << (ob + p)->GetTopRank() << "\t" << (ob + p)->GetEnglish() << "\t" << (ob + p)->GetMath() << "\t" << (ob + p)->GetTotal() << "\t" << (ob + p)->GetAverage() << endl;
+		}
+
+		cout << "다른 계산을 원하는가? (Y/N): ";
+
+		cin >> selection;
+
+		while (selection != 'Y' && selection != 'y' && selection != 'N' && selection != 'n')
+		{
+			cout << "오직 Y, y, N, n만 입력하시오. : ";
+
+			cin >> selection;
+		}
+
+	} while (selection == 'Y' || selection == 'y');
+
+	delete[]ob;
+	system("PAUSE");
+}
