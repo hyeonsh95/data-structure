@@ -1,0 +1,52 @@
+int Speed = 0;
+int pin_DC_A = 5;
+int pin_DC_B = 6;
+
+
+void setup() {
+  pinMode(pin_DC_A, OUTPUT);
+  pinMode(pin_DC_B, OUTPUT);
+  Serial.begin(9600);
+  //Serial.println("Speed 0 to 255");
+}
+
+void loop() {
+  if(Serial.available()>0)
+  {
+    Speed = Serial.parseInt();
+    if(Serial.read() == '\n')
+    {
+      Serial.print('\r');
+    }
+  }
+  
+  if(Speed > 0)
+  {
+    forwardRotation(Speed);
+  }
+  
+  else if(Speed == 0)
+  {
+    Stop();
+  }
+  
+  else if(Speed < 0)
+  {
+    reverseRotation(-Speed);
+  }
+}
+
+void forwardRotation(uint8_t Speed){ 
+  digitalWrite(pin_DC_A, LOW); 
+  analogWrite(pin_DC_B, Speed); 
+}
+
+void reverseRotation(uint8_t Speed){ 
+  digitalWrite(pin_DC_B, LOW); 
+  analogWrite(pin_DC_A, Speed);
+}
+
+void Stop(void){ 
+  digitalWrite(pin_DC_A, LOW); 
+  digitalWrite(pin_DC_B, LOW);
+}
