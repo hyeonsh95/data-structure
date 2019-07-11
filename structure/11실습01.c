@@ -1,4 +1,4 @@
-//���Ḯ��Ʈ_��ȣ�˻�.c
+//¿¬°á¸®½ºÆ®_°ýÈ£°Ë»ç.c
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>
