@@ -1,0 +1,112 @@
+#include<iostream>
+using namespace std;
+
+class CPoint {
+protected:
+	double m_x, m_y;
+public:
+	CPoint(double x, double y);
+	virtual double ComputeUnit() = 0;
+	virtual void ShowPoint();
+};
+CPoint::CPoint(double x, double y)
+{
+	m_x = x;
+	m_y = y;
+}
+void CPoint::ShowPoint() {
+	cout.setf(ios::fixed);
+	cout.precision(1);
+	cout << "의 좌표 : " << "(x : " << m_x << ' ' << "y : " << m_y;
+}
+/**************************************************************************/
+
+class CLengthPoint :public CPoint {
+
+	double m_z;
+
+public:
+	CLengthPoint(double x, double y, double z);
+	double ComputeUnit();
+	void ShowPoint();
+};
+
+CLengthPoint::CLengthPoint(double x, double y, double z) : CPoint(x, y)
+{
+	m_z = z;
+}
+double CLengthPoint::ComputeUnit() {
+	return sqrt(m_x * m_x + m_y * m_y + m_z * m_z);
+}
+void CLengthPoint::ShowPoint()
+{
+	CPoint::ShowPoint();
+	cout << " z : " << m_z << ")" << endl;
+}
+/**************************************************************************/
+
+class CVolumePoint :public CPoint {
+protected:
+	double m_z;
+public:
+	CVolumePoint(double x, double y, double z);
+	double ComputeUnit();
+	void ShowPoint();
+};
+
+CVolumePoint::CVolumePoint(double x, double y, double z) :CPoint(x, y)
+{
+	m_z = z;
+}
+double CVolumePoint::ComputeUnit()
+{
+	return m_x * m_y * m_z;
+}
+void CVolumePoint::ShowPoint()
+{
+	CPoint::ShowPoint();
+	cout << " z :" << m_z << ")" << endl;
+
+}
+/**************************************************************************/
+
+class CAreaPoint :public CVolumePoint {
+public:
+	CAreaPoint(double x, double y, double z);
+	double ComputeUnit();
+
+};
+CAreaPoint::CAreaPoint(double x, double y, double z) :CVolumePoint(x, y, z)
+{};
+double CAreaPoint::ComputeUnit()
+{
+	return 2 * ((m_x*m_y) + (m_y *m_z) + (m_x * m_z));
+}
+/**************************************************************************/
+
+int main()
+{
+	CPoint *pointer;
+	CLengthPoint lengthPt(5.2, 12.5, 3.3);
+	CVolumePoint volumePt(10.6, 4.2, 5.7);
+	CAreaPoint areaPt(5.3, 6.9, 4.1);
+
+	pointer = &lengthPt;
+	cout << "객체 lengthPt";
+	pointer->ShowPoint();
+	cout << "객체 volumePt의 육면체 부피 : " << pointer->ComputeUnit() << endl;
+
+	pointer = &volumePt;
+	cout << "객체 volumePt";
+	pointer->ShowPoint();
+	cout << "객체 volumePt의 육면체 부피 : " << pointer->ComputeUnit() << endl;
+
+	pointer = &areaPt;
+	cout << "객체 areaPt";
+	pointer->ShowPoint();
+	cout << "객체 volumePt의 육면체 부피 : " << pointer->ComputeUnit() << endl;
+
+
+	system("PAUSE");
+	return 0;
+}
