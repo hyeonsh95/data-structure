@@ -1,0 +1,235 @@
+#include<iostream>
+using namespace std;
+
+class Coin
+{
+
+	int m_penny, m_nickel, m_dime, m_quarter;
+	int m_dollar;
+	int m_cent;
+
+public:
+
+	Coin();
+	Coin(int quarter, int dime, int nickel, int penny);
+	Coin(int dollar, int cent);
+	bool Set_Quarter(int quarter);
+	bool Set_Dime(int dime);
+	bool Set_Nickel(int nickel);
+	bool Set_Penny(int penny);
+	bool Set_Dollar(int dollar);
+	bool Set_Cent(int cent);
+	int Get_Penny();
+	int Get_Nickel();
+	int Get_Dime();
+	int Get_Quarter();
+	int Get_Dollar();
+	int Get_Cent();
+	void Exchange_Coin_To_Dollar();
+	void Exchange_Dollar_To_Coin();
+	void Print_Money();
+};
+Coin::Coin() {
+	m_penny = 1;
+	m_nickel = 1;
+	m_dime = 1;
+	m_quarter = 1;
+	m_dollar = 0;
+	m_cent = 41;
+
+}
+
+Coin::Coin(int quarter, int dime, int nickel, int penny) {
+	m_quarter = quarter;
+	m_dime = dime;
+	m_nickel = nickel;
+	m_penny = penny;
+	m_dollar = Get_Dollar();
+	m_cent = Get_Cent();
+}
+
+Coin::Coin(int dollar, int cent)
+{
+	m_dollar = dollar;
+	m_cent = cent;
+	m_quarter = Get_Quarter();
+	m_dime = Get_Dime();
+	m_nickel = Get_Nickel();
+	m_penny = Get_Penny();
+}
+int Coin::Get_Penny()
+{
+	return m_penny;
+}
+int Coin::Get_Nickel()
+{
+	return m_nickel;
+}
+int Coin::Get_Dime()
+{
+	return m_dime;
+}
+int Coin::Get_Quarter()
+{
+	return m_quarter;
+}
+int Coin::Get_Dollar()
+{
+	return m_dollar;
+}
+int Coin::Get_Cent()
+{
+	return m_cent;
+}
+bool Coin::Set_Quarter(int quarter)
+{
+	if (quarter < 0)
+	{
+		return false;
+	}
+	else
+	{
+		m_quarter = quarter;
+		return true;
+	}
+}
+bool Coin::Set_Dime(int dime)
+{
+	if (dime < 0)
+	{
+		return false;
+	}
+	else
+	{
+		m_dime = dime;
+		return true;
+	}
+}
+bool Coin::Set_Nickel(int nickel)
+{
+	if (nickel < 0)
+	{
+		return false;
+	}
+	else
+	{
+		m_nickel = nickel;
+		return true;
+	}
+}
+bool Coin::Set_Penny(int penny)
+{
+	if (penny < 0)
+	{
+		return false;
+	}
+	else
+	{
+		m_penny = penny;
+		return true;
+	}
+}
+bool Coin::Set_Dollar(int dollar)
+{
+	if (dollar < 0)
+	{
+		return false;
+	}
+	else
+	{
+		m_dollar = dollar;
+		return true;
+	}
+}
+bool Coin::Set_Cent(int cent)
+{
+	if (cent < 0)
+	{
+		return false;
+	}
+	else
+	{
+		m_cent = cent;
+		return true;
+	}
+}
+void Coin::Exchange_Coin_To_Dollar()
+{
+	int sum;
+	sum = (m_quarter * 25) + (m_dime * 10) + (m_nickel * 5) + (m_penny * 1);
+
+	m_dollar = sum / 100;
+	m_cent = sum % 100;
+
+}
+void Coin::Exchange_Dollar_To_Coin()
+{
+	int sum;
+	sum = (100 * m_dollar) + (m_cent);
+	m_quarter = sum / 25;
+	m_dime = (sum - (m_quarter * 25)) / 10;
+	m_nickel = (sum - (m_dime * 10) - (m_quarter * 25)) / 5;
+	m_penny = (sum - (m_nickel * 5) - (m_dime * 10) - (m_quarter * 25)) / 1;
+}
+void Coin::Print_Money()
+{
+	cout << "============================================" << endl;
+	cout << "코인의 갯수는 " << m_quarter << "쿼러, " << m_dime << "다임, " << m_nickel << "니클, " << m_penny << "페니이고 " << endl;
+	cout << "달러로 환산하면 " << m_dollar << "달러, " << m_cent << "센트 입니다." << endl;
+	cout << endl;
+}
+int main()
+{
+
+	Coin p1;
+	Coin p2(5, 3, 1, 4);
+	Coin p3(2, 30);
+	int q, d, n, p;
+
+
+	p1.Print_Money();
+
+	p2.Exchange_Coin_To_Dollar();
+	p2.Print_Money();
+
+	p3.Exchange_Dollar_To_Coin();
+	p3.Print_Money();
+
+
+	p1.Set_Quarter(3);
+	p1.Set_Nickel(14);
+	p1.Exchange_Coin_To_Dollar();
+
+	cout << "============================================" << endl;
+	cout << "코인의 갯수는 " << p1.Get_Quarter() << "쿼러, " << p1.Get_Dime() << "다임, " << p1.Get_Nickel() << "니클, " << p1.Get_Penny() << "페니이고" << endl;
+	cout << "달러로 환산하면 " << p1.Get_Dollar() << "달러, " << p1.Get_Cent() << "센트 입니다." << endl;
+	cout << endl;
+
+	p2.Set_Dollar(3);
+	p2.Set_Cent(33);
+	p2.Exchange_Dollar_To_Coin();
+	p2.Print_Money();
+
+	cout << "동전의 개수를 순서대로 입력하세요(쿼러, 다임, 니클, 페니) :";
+	cin >> q >> d >> n >> p;
+
+	p3.Set_Quarter(q);
+	p3.Set_Dime(d);
+	p3.Set_Nickel(n);
+	p3.Set_Penny(p);
+
+
+	while (!p3.Set_Quarter(q) || !p3.Set_Dime(d) || !p3.Set_Nickel(n) || !p3.Set_Penny(p))
+	{
+		cout << "입력된 값 중에 음수가 있습니다." << endl;
+		cout << "0 이상의 값으로 동전의 개수를 순서대로 입력하세요(쿼러, 다임, 니클, 페니) :";
+		cin >> q >> d >> n >> p;
+
+
+	}
+
+	p3.Exchange_Coin_To_Dollar();
+	p3.Print_Money();
+
+	return 0;
+}
