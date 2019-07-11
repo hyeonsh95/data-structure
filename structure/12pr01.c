@@ -15,7 +15,7 @@ arrayQueue *createArrayQueue() {
 }
 
 void enQueue(arrayQueue *Q, element item) {
-	if ((Q->rear + 1) % MAX_QUEUE_SIZE == Q->front) { return; }		// (rear +1)%arraysize == front  :  empty�� �ƴ϶� full
+	if ((Q->rear + 1) % MAX_QUEUE_SIZE == Q->front) { return; }		// (rear +1)%arraysize == front  :  empty°¡ ¾Æ´Ï¶ó full
 	else {
 		Q->rear = (Q->rear + 1) % MAX_QUEUE_SIZE;
 		Q->queue[Q->rear] = item;
