@@ -40,10 +40,10 @@ void insertEdge(graph* g, vertex from, vertex to)
 void printGraph(graph* g)
 {
 	gnode* gp;
-	printf("±×·¡ÇÁ G:\n");
+	printf("ê·¸ëž˜í”„ G:\n");
 	for (int i = 0; i < g->n; i++)
 	{
-		printf("\nÁ¤Á¡ %cÀÇ ÀÎÁ¢¸®½ºÆ®: ", i + 65);
+		printf("\nì •ì  %cì˜ ì¸ì ‘ë¦¬ìŠ¤íŠ¸: ", i + 65);
 		gp = g->adjList_head[i];
 		while (gp) {
 			printf(" -> %c", (gp->vid) + 65);
