@@ -114,10 +114,10 @@ void searchGraphDFS(graph *g, Stack *S, int v)
 void printGraph(graph* g)
 {
 	gnode* gp;
-	printf("±×·¡ÇÁ G:\n");
+	printf("ê·¸ë˜í”„ G:\n");
 	for (int i = 0; i < g->n; i++)
 	{
-		printf("\nÁ¤Á¡ %cÀÇ ÀÎÁ¢¸®½ºÆ®: ", i + 65);
+		printf("\nì •ì  %cì˜ ì¸ì ‘ë¦¬ìŠ¤íŠ¸: ", i + 65);
 		gp = g->adjList_head[i];
 		while (gp) {
 			printf(" -> %c", (gp->vid) + 65);
@@ -143,7 +143,7 @@ int main()
 
 	printGraph(G1);
 
-	printf("\n±íÀÌ¿ì¼±Å½»ö: ");
+	printf("\nê¹Šì´ìš°ì„ íƒìƒ‰: ");
 	searchGraphDFS(G1, S1, 0);
 	printf("\n");
 
