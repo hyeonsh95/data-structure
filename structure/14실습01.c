@@ -7,7 +7,7 @@ typedef struct BtreeNode
 {
 	//data, left, right field
 	element data;
-	struct BtreeNode *left;				// ÀÚ±âÂüÁ¶±¸Á¶Ã¼
+	struct BtreeNode *left;				// ìžê¸°ì°¸ì¡°êµ¬ì¡°ì²´
 	struct BtreeNode *right;
 }bnode;
 
@@ -40,7 +40,7 @@ void inorder(bnode *root)
 		inorder(root->right);
 	}
 }
-void preorder(bnode *root)		// ÀüÀ§¼øÀ§
+void preorder(bnode *root)		// ì „ìœ„ìˆœìœ„
 {
 	if (root)
 	{
@@ -49,7 +49,7 @@ void preorder(bnode *root)		// ÀüÀ§¼øÀ§
 		inorder(root->right);
 	}
 }
-void postorder(bnode *root)		//ÈÄÀ§¼øÀ§
+void postorder(bnode *root)		//í›„ìœ„ìˆœìœ„
 {
 	if (root)
 	{
@@ -68,11 +68,11 @@ int main()
 	n0 = createBnodeInstance('+',n1, n2);
 
 	bt1->root = n0;
-	printf("ÁßÀ§¼øÀ§¹ý : ");
+	printf("ì¤‘ìœ„ìˆœìœ„ë²• : ");
 	inorder(bt1->root);
-	printf("\nÀüÀ§¼øÀ§¹ý : ");
+	printf("\nì „ìœ„ìˆœìœ„ë²• : ");
 	preorder(bt1->root);
-	printf("\nÈÄÀ§¼øÀ§¹ý : ");
+	printf("\ní›„ìœ„ìˆœìœ„ë²• : ");
 	postorder(bt1->root);
 	/*
 	bt1 = (btree*)malloc(sizeof(btree));
