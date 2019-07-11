@@ -1,0 +1,27 @@
+int pin_LED_R = 9;
+int pin_LED_G = 10;
+int pin_LED_B = 11;
+
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(pin_LED_R, OUTPUT);
+  pinMode(pin_LED_G, OUTPUT);
+  pinMode(pin_LED_B, OUTPUT);
+}
+
+void loop() {
+  while(Serial.available() > 0 )
+  {
+    long LED_R = Serial.parseInt();
+    long LED_G = Serial.parseInt();
+    long LED_B = Serial.parseInt();
+    
+    Set_Led(LED_R,LED_G,LED_B);
+  }
+}
+void Set_Led(int Red,int Green,int Blue){
+  analogWrite(9,Red);
+  analogWrite(10,Green);
+  analogWrite(11,Blue);
+}
